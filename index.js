@@ -2,7 +2,7 @@ var less = require('less'),
   path = require('path');
 
 hexo.extend.renderer.register('less', 'css', function(data, options, callback){
-  var themeConfig = this.hexo.theme.config.less || {};
+  var themeConfig = hexo.theme.config.less || {};
   var cwd = process.cwd();
     var paths = (themeConfig.paths || []).map(function(filepath){
     return path.join(cwd, filepath);    // assuming paths are relative from the root of the project
