@@ -8,13 +8,15 @@ hexo.extend.renderer.register('less', 'css', function(data, options, callback){
     return path.join(cwd, filepath);    // assuming paths are relative from the root of the project
   });
 
-  var parser = new less.Parser({
+  var parser = less.render(data.text, {
     paths: paths.concat(path.dirname(data.path)),
-    filename: path.basename(data.path)
-  });
-
-  parser.parse(data.text, function(err, tree){
-    if (err) return callback(err);
-    callback(null, tree.toCSS(options));
+    filename: path.basename(data.path),
+    compress: themeConfig.compress || false
+  })
+  .then(function(output) {
+    callback(null, output.css);
+  },
+  function(error){
+    callback(error);
   });
 });

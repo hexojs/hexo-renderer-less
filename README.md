@@ -21,3 +21,12 @@ less:
   paths:
     - bower_components/bootstrap/less
 ```
+
+You can compress the output of the css with a config in your theme configuration.
+
+```yaml
+// themes/yourtheme/_config.yml
+
+less:
+  compress: true
+```
