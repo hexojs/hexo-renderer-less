@@ -2,23 +2,23 @@
 
 /* global hexo */
 
-var less = require('less');
-var path = require('path');
+const less = require('less');
+const path = require('path');
 
-hexo.extend.renderer.register('less', 'css', function(data, options, callback) {
-  var themeConfig = hexo.theme.config.less || {};
-  var cwd = process.cwd();
-  var paths = (themeConfig.paths || []).map(function(filepath) {
+hexo.extend.renderer.register('less', 'css', (data, options, callback) => {
+  const themeConfig = hexo.theme.config.less || {};
+  const cwd = process.cwd();
+  const paths = (themeConfig.paths || []).map(filepath => {
     return path.join(cwd, filepath); // assuming paths are relative from the root of the project
   });
 
-  var parser = less.render(data.text, { // eslint-disable-line no-unused-vars
+  const parser = less.render(data.text, { // eslint-disable-line no-unused-vars
     paths: paths.concat(path.dirname(data.path)),
     filename: path.basename(data.path),
     compress: themeConfig.compress || false
-  }).then(function(output) {
+  }).then(output => {
     callback(null, output.css);
-  }, function(error) {
+  }, error => {
     callback(error);
   });
 });
