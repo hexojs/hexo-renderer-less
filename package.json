@@ -2,11 +2,11 @@
   "name": "hexo-renderer-less",
   "version": "1.0.0",
   "description": "Less renderer plugin for Hexo",
-  "main": "index",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hexojs/hexo-renderer-less.git"
-  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": "hexojs/hexo-renderer-less",
   "bugs": {
     "url": "https://github.com/hexojs/hexo-renderer-less/issues"
   },
@@ -19,14 +19,8 @@
     "renderer"
   ],
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
-  "license": {
-    "type": "MIT",
-    "url": "https://raw.github.com/tommy351/hexo/master/LICENSE"
-  },
+  "license": "MIT",
   "dependencies": {
     "less": "^3.9.0"
-  },
-  "files": [
-    "index.js"
-  ]
+  }
 }
