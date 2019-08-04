@@ -22,5 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "less": "^3.9.0"
+  },
+  "engines": {
+    "node": ">=8.6.0"
   }
 }
