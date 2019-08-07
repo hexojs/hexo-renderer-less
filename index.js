@@ -11,7 +11,7 @@ hexo.extend.renderer.register('less', 'css', (data, options, callback) => {
     return path.join(cwd, filepath); // assuming paths are relative from the root of the project
   });
 
-  const parser = less.render(data.text, {
+  const parser = less.render(data.text, { // eslint-disable-line no-unused-vars
     paths: paths.concat(path.dirname(data.path)),
     filename: path.basename(data.path),
     compress: themeConfig.compress || false
