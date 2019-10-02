@@ -4,7 +4,7 @@
 const less = require('less');
 const path = require('path');
 
-hexo.extend.renderer.register('less', 'css', async (data) => {
+hexo.extend.renderer.register('less', 'css', async(data) => {
   const themeConfig = hexo.theme.config.less || {};
   const cwd = process.cwd();
   const paths = (themeConfig.paths || []).map(filepath => {
