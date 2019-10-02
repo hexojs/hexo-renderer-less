@@ -1,6 +1,6 @@
 # [Less] renderer
 
-[![Build Status](https://travis-ci.org/hexojs/hexo-renderer-less.svg?branch=master)](https://travis-ci.org/hexojs/hexo-renderer-less)
+[![Build Status](https://travis-ci.com/hexojs/hexo-renderer-less.svg?branch=master)](https://travis-ci.com/hexojs/hexo-renderer-less)
 [![NPM version](https://badge.fury.io/js/hexo-renderer-less.svg)](https://www.npmjs.com/package/hexo-renderer-less)
 
 Add support for [Less].
