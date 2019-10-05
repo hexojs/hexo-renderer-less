@@ -1,3 +1,7 @@
+os:
+  - linux
+  - windows
+
 language: node_js
 
 sudo: false
@@ -11,4 +15,7 @@ node_js:
   - "node"
 
 script:
+  - if [[ $TRAVIS_OS_NAME == "windows" ]]; then
+      git config core.autocrlf false && git add --renormalize . && git reset --hard;
+    fi
   - npm run eslint
