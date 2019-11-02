@@ -15,7 +15,6 @@ node_js:
   - "node"
 
 script:
-  - if [[ $TRAVIS_OS_NAME == "windows" ]]; then
-      git config core.autocrlf false && git add --renormalize . && git reset --hard;
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
+      npm run eslint;
     fi
-  - npm run eslint
