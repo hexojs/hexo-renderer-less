@@ -27,17 +27,17 @@ describe('less', () => {
 
     result.should.eql(expected);
 
-    ctx.theme.config.less.paths = []
+    ctx.theme.config.less.paths = [];
   });
 
   it('import variable - different folder', async() => {
-    ctx.theme.config.less.paths = ['test/fixtures/']
+    ctx.theme.config.less.paths = ['test/fixtures/'];
     const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
     const expected = 'div {\n  bar: 1em;\n}\n';
     const result = await r(less);
 
     result.should.eql(expected);
 
-    ctx.theme.config.less.paths = []
+    ctx.theme.config.less.paths = [];
   });
 });
