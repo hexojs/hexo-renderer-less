@@ -13,23 +13,16 @@ $ npm install hexo-renderer-less --save
 
 ## Configure
 
-You can specify a [less include paths](http://lesscss.org/usage/#less-options-include-paths) as an array config in your theme configuration.
+In your theme configuration,
 
 ```yaml
 // themes/yourtheme/_config.yml
 
 less:
-  paths:
-    - bower_components/bootstrap/less
+  paths: []
 ```
 
-You can compress the output of the css with a config in your theme configuration.
-
-```yaml
-// themes/yourtheme/_config.yml
-
-less:
-  compress: true
-```
+- **paths**: Array of [include paths](http://lesscss.org/usage/#less-options-include-paths).
+  * e.g. to include Bower Bootstrap, `['bower_components/bootstrap/less']`
 
 [Less]: http://lesscss.org/
