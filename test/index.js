@@ -1,20 +1,43 @@
 'use strict';
 
 require('chai').should();
-const r = require('../lib/renderer');
-
-const less = { text: '@foo: 1em; div { bar: @foo; }', path: '/foo/bar.less'};
-const css = 'div {\n  bar: 1em;\n}\n';
+const { join } = require('path');
+const ctx = {
+  theme: {
+    config: {}
+  }
+};
+const r = require('../lib/renderer').bind(ctx);
 
 describe('less', () => {
-  it('default', async() => {
-    const ctx = {
-      theme: {
-        config: {}
-      }
-    };
-    const result = await r.call(ctx, less);
+  const expected = 'div {\n  bar: 1em;\n}\n';
 
-    result.should.eql(css);
+  it('default', async() => {
+    const less = { text: '@foo: 1em; div { bar: @foo; }', path: '/foo/bar.less'};
+    const result = await r(less);
+
+    result.should.eql(expected);
+  });
+
+  it('import variable - same folder', async() => {
+    const filepath = join(process.cwd(), 'test/fixtures/foo.less');
+    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: filepath};
+    const expected = 'div {\n  bar: 1em;\n}\n';
+    const result = await r(less);
+
+    result.should.eql(expected);
+
+    ctx.theme.config.less.paths = []
+  });
+
+  it('import variable - different folder', async() => {
+    ctx.theme.config.less.paths = ['test/fixtures/']
+    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+    const expected = 'div {\n  bar: 1em;\n}\n';
+    const result = await r(less);
+
+    result.should.eql(expected);
+
+    ctx.theme.config.less.paths = []
   });
 });
