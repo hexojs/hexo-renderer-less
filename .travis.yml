@@ -18,3 +18,8 @@ script:
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
       npm run eslint;
     fi
+  - npm run test-cov
+
+after_script:
+  - npm install coveralls
+  - nyc report --reporter=text-lcov | coveralls
