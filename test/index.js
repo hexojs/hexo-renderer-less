@@ -22,18 +22,14 @@ describe('less', () => {
   it('import variable - same folder', async() => {
     const filepath = join(process.cwd(), 'test/fixtures/foo.less');
     const less = { text: '@import "variables.less"; div { bar: @foo; }', path: filepath};
-    const expected = 'div {\n  bar: 1em;\n}\n';
     const result = await r(less);
 
     result.should.eql(expected);
-
-    ctx.theme.config.less.paths = [];
   });
 
   it('import variable - different folder', async() => {
     ctx.theme.config.less.paths = ['test/fixtures/'];
     const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const expected = 'div {\n  bar: 1em;\n}\n';
     const result = await r(less);
 
     result.should.eql(expected);
