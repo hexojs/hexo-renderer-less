@@ -30,12 +30,14 @@
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
   "dependencies": {
-    "less": "^3.9.0"
+    "less": "^3.9.0",
+    "micromatch": "^4.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^7.1.0",
     "eslint-config-hexo": "^4.1.0",
+    "hexo": "^5.0.2",
     "mocha": "^8.0.1",
     "nyc": "^15.0.0"
   },
