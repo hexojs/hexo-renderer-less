@@ -55,15 +55,6 @@ describe('less', () => {
     result.should.eql(expected);
   });
 
-  it('paths - null', async () => {
-    hexo.theme.config.less.paths = null;
-    const filepath = join(process.cwd(), 'test/fixtures/foo.less');
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: filepath};
-    const result = await r(less);
-
-    result.should.eql(expected);
-  });
-
   it('paths - string', async () => {
     const extFile = 'test/fixtures/variables.less';
     hexo.route.set(extFile, '@foo: 1em;');
