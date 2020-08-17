@@ -21,9 +21,18 @@ In your theme configuration,
 
 less:
   paths: []
+  options:
 ```
 
 - **paths**: Array of [include paths](http://lesscss.org/usage/#less-options-include-paths).
   * e.g. to include Bower Bootstrap, `['bower_components/bootstrap/less']`
+- **options**: Less.js [options](http://lesscss.org/usage/#less-options).
+  * Example:
+  ``` yml
+  less:
+    options:
+      globalVars:
+        var1: 'some value'
+  ```
 
 [Less]: http://lesscss.org/
