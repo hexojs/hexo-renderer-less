@@ -55,90 +55,74 @@ describe('less', () => {
     result.should.eql(expected);
   });
 
-  it('paths - string', async () => {
+  describe('globbing', () => {
     const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = extFile;
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
 
-    result.should.eql(expected);
+    beforeEach(() => {
+      hexo.route.set(extFile, '@foo: 1em;');
+    });
 
-    hexo.route.remove(extFile);
-  });
+    afterEach(() => {
+      hexo.route.remove(extFile);
+    });
 
-  it('paths - array', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = [extFile];
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
+    it('paths - string', async () => {
+      hexo.theme.config.less.paths = extFile;
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-    result.should.eql(expected);
+      result.should.eql(expected);
+    });
 
-    hexo.route.remove(extFile);
-  });
+    it('paths - array', async () => {
+      hexo.theme.config.less.paths = [extFile];
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-  it('paths - globbing (array)', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = ['**/test/fixtures/*'];
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
+      result.should.eql(expected);
+    });
 
-    result.should.eql(expected);
+    it('paths - globbing (array)', async () => {
+      hexo.theme.config.less.paths = ['**/test/fixtures/*'];
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-    hexo.route.remove(extFile);
-  });
+      result.should.eql(expected);
+    });
 
-  it('paths - globbing (string)', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = '**/test/fixtures/*';
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
+    it('paths - globbing (string)', async () => {
+      hexo.theme.config.less.paths = '**/test/fixtures/*';
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-    result.should.eql(expected);
+      result.should.eql(expected);
+    });
 
-    hexo.route.remove(extFile);
-  });
+    it('paths - string + globbing', async () => {
+      hexo.theme.config.less.paths = ['a/path/', '**/test/fixtures/*'];
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-  it('paths - string + globbing', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = ['a/path/', '**/test/fixtures/*'];
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
+      result.should.eql(expected);
+    });
 
-    result.should.eql(expected);
+    it('paths - globbing + string', async () => {
+      hexo.theme.config.less.paths = [extFile, '**/sky/*'];
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
+      const result = await r(less);
 
-    hexo.route.remove(extFile);
-  });
+      result.should.eql(expected);
+    });
 
-  it('paths - globbing + string', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = [extFile, '**/sky/*'];
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-    const result = await r(less);
+    it('paths - globbing not matched', async () => {
+      hexo.theme.config.less.paths = '**/sky/*';
+      const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
 
-    result.should.eql(expected);
-
-    hexo.route.remove(extFile);
-  });
-
-  it('paths - globbing not matched', async () => {
-    const extFile = 'test/fixtures/variables.less';
-    hexo.route.set(extFile, '@foo: 1em;');
-    hexo.theme.config.less.paths = '**/sky/*';
-    const less = { text: '@import "variables.less"; div { bar: @foo; }', path: '/foo/bar.less'};
-
-    try {
-      await r(less);
-    } catch (err) {
-      err.message.includes('\'variables.less\' wasn\'t found.').should.eql(true);
-    }
-
-    hexo.route.remove(extFile);
+      try {
+        await r(less);
+      } catch (err) {
+        err.message.includes('\'variables.less\' wasn\'t found.').should.eql(true);
+      }
+    });
   });
 });
