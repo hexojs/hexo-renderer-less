@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-less",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Less renderer plugin for Hexo",
   "main": "index.js",
   "directories": {
@@ -42,6 +42,6 @@
     "nyc": "^15.0.0"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10.13.0"
   }
 }
