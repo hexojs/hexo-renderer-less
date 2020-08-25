@@ -17,8 +17,7 @@ $ npm install hexo-renderer-less --save
 In your theme configuration,
 
 ```yaml
-// themes/yourtheme/_config.yml
-
+# themes/yourtheme/_config.yml
 less:
   paths: []
   options:
@@ -26,6 +25,7 @@ less:
 
 - **paths**: Array of [include paths](http://lesscss.org/usage/#less-options-include-paths).
   * e.g. to include Bower Bootstrap, `['bower_components/bootstrap/less']`
+  * globbing is also supported, `['bower_components/bootstrap/**']`
 - **options**: Less.js [options](http://lesscss.org/usage/#less-options).
   * Example:
   ``` yml
