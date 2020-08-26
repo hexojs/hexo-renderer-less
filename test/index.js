@@ -125,4 +125,30 @@ describe('less', () => {
       }
     });
   });
+
+  describe('nunjucks', () => {
+    const { join } = require('path');
+    const hexo = new Hexo(__dirname, { silent: true });
+    const loremFn = () => { return 'ipsum'; };
+
+    before(async () => {
+      await hexo.init();
+      hexo.extend.tag.register('lorem', loremFn);
+      hexo.extend.renderer.register('less', 'css', require('../lib/renderer'));
+    });
+
+    it('default', async () => {
+      const result = await hexo.post.render(join(__dirname, 'fixtures', 'variables.less'), { content: 'foo { bar: "{% lorem %}" }' });
+      result.content.should.eql('foo {\n  bar: "{% lorem %}";\n}\n');
+    });
+
+    it('disable disabelNunjucks', async () => {
+      const renderer = hexo.render.renderer.get('less');
+      renderer.disableNunjucks = false;
+      hexo.extend.renderer.register('less', 'css', renderer);
+
+      const result = await hexo.post.render(join(__dirname, 'fixtures', 'variables.less'), { content: 'foo { bar: "{% lorem %}" }' });
+      result.content.should.eql('foo {\n  bar: "' + loremFn() + '";\n}\n');
+    });
+  });
 });
