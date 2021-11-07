@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-less",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Less renderer plugin for Hexo",
   "main": "index.js",
   "directories": {
@@ -11,7 +11,7 @@
     "lib/"
   ],
   "scripts": {
-    "eslint": "eslint .",
+    "eslint": "eslint . --fix",
     "test": "mocha test/index.js",
     "test-cov": "nyc npm run test"
   },
@@ -30,18 +30,18 @@
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
   "dependencies": {
-    "less": "^3.9.0",
-    "micromatch": "^4.0.2"
+    "less": "^3.13.1",
+    "micromatch": "^4.0.4"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^8.1.0",
-    "eslint-config-hexo": "^4.1.0",
-    "hexo": "^5.0.2",
-    "mocha": "^8.0.1",
+    "chai": "^4.3.4",
+    "eslint": "^8.2.0",
+    "eslint-config-hexo": "^4.2.0",
+    "hexo": "^5.4.0",
+    "mocha": "^8.4.0",
     "nyc": "^15.0.0"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12"
   }
 }
