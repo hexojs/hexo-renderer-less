@@ -13,7 +13,7 @@
   "scripts": {
     "eslint": "eslint . --fix",
     "test": "mocha test/index.js",
-    "test-cov": "nyc npm run test"
+    "test-cov": "nyc --reporter=lcovonly npm run test"
   },
   "repository": "hexojs/hexo-renderer-less",
   "bugs": {
