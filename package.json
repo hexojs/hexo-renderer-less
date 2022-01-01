@@ -30,7 +30,7 @@
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
   "dependencies": {
-    "less": "^3.13.1",
+    "less": "^4.1.2",
     "micromatch": "^4.0.4"
   },
   "devDependencies": {
