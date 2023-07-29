@@ -1,6 +1,6 @@
 # [Less] renderer
 
-[![Build Status](https://travis-ci.com/hexojs/hexo-renderer-less.svg?branch=master)](https://travis-ci.com/hexojs/hexo-renderer-less)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/hexojs/hexo-renderer-less/tester.yml?branch=master&label=test)](https://github.com/hexojs/hexo-renderer-less/actions?query=workflow%3ATester)
 [![NPM version](https://badge.fury.io/js/hexo-renderer-less.svg)](https://www.npmjs.com/package/hexo-renderer-less)
 [![Coverage Status](https://coveralls.io/repos/github/hexojs/hexo-renderer-less/badge.svg?branch=master)](https://coveralls.io/github/hexojs/hexo-renderer-less?branch=master)
 
