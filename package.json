@@ -34,7 +34,7 @@
     "micromatch": "^4.0.4"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
+    "chai": "^5.0.0",
     "eslint": "^8.2.0",
     "eslint-config-hexo": "^5.0.0",
     "hexo": "^7.0.0",
